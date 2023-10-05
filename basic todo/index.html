@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="Add a new task">
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList">
+    </ul>
+
+    <script>
+        // Function to add a new task
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const taskText = taskInput.value.trim();
+
+            if (taskText !== '') {
+                const taskList = document.getElementById('taskList');
+                const newTask = document.createElement('li');
+                newTask.textContent = taskText;
+
+                // Add a button to remove the task with a delay
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.onclick = function() {
+                    // Use setTimeout to remove the task after a 2-second delay
+                    setTimeout(function() {
+                        taskList.removeChild(newTask);
+                    }, 2000);
+                };
+
+                newTask.appendChild(removeButton);
+                taskList.appendChild(newTask);
+
+                // Clear the input field
+                taskInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
